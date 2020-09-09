@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  
+  slabitmq:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - .:/go/src/github.com/arkrozycki/slabitmq
+      - go-modules:/go/pkg/mod
+    working_dir: /go/src/github.com/arkrozycki/slabitmq
+    restart: on-failure
+    ports:
+      - "8080:8080"
+      
+volumes:
+  go-modules:
